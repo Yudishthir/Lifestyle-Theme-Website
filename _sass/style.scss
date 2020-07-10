@@ -1,0 +1,309 @@
+@import "colors.scss";
+@import "breakpoint.scss";
+@import "animations.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,700;1,900&display=swap");
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Roboto", Cambria, Cochin, Georgia, Times, "Times New Roman",
+		serif;
+}
+
+%section-common {
+	animation: fadeInLate 5s;
+	display: flex;
+	height: 40vh;
+	width: 100%;
+}
+
+%text-common {
+	display: flex;
+	flex-basis: 70%;
+	padding: 1rem;
+	text-align: justify;
+
+	span {
+		line-height: 1.8rem;
+		align-self: center;
+	}
+}
+
+%pic-common {
+	flex-basis: 30%;
+	margin: 2rem;
+}
+
+#navbar {
+	display: block;
+
+	ul {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		width: 40%;
+		list-style: none;
+
+		li {
+			display: flex;
+			padding: 0px 1rem;
+			justify-content: center;
+			align-items: center;
+
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4) {
+				animation: fadeInLate 5s;
+				height: 70px;
+			}
+
+			a {
+				&:link,
+				&:visited {
+					text-decoration: none;
+					color: #000000;
+				}
+
+				&::after {
+					content: "";
+					display: block;
+					height: 2px;
+					width: 0;
+					background: #000000;
+					transition: width 1s;
+				}
+			}
+		}
+
+		li:nth-child(1) {
+			font-size: 3rem;
+			margin: auto 5rem auto 2rem;
+			padding-top: 10px;
+		}
+	}
+}
+
+#container {
+	max-width: 1024px;
+	margin: auto;
+}
+
+#header {
+	width: 100%;
+	height: 55vh;
+
+	background-color: #ffffff;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23ffdecf' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23ffcdab' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23ffe3d2' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23ffc59b' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23ffe7d6' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23ffbd8c' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23ffebda' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23ffb47c' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23fff0de' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23ffac6c' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%23fff4e3' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23ffa45c' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+	background-size: cover;
+	background-position: bottom;
+	background-clip: border-box;
+	animation: fadeInFirst 2s;
+
+	#heading {
+		display: block;
+		position: relative;
+		top: 6rem;
+		padding: 1.5rem;
+		margin: auto;
+		max-width: 400px;
+		font-style: italic;
+		border: 6px solid $outline;
+		outline: 6px solid $outline;
+		outline-offset: 10px;
+		animation: fadeLeft 4s;
+
+		h1 {
+			margin-bottom: 0.5rem;
+			font-size: 3rem;
+		}
+
+		h2 {
+			font-size: 2rem;
+		}
+	}
+}
+
+#section {
+	&-about {
+		@extend %section-common;
+	}
+	&-travel {
+		@extend %section-common;
+	}
+	&-lifestyle {
+		@extend %section-common;
+	}
+}
+
+#text {
+	&-about {
+		@extend %text-common;
+	}
+	&-travel {
+		@extend %text-common;
+	}
+	&-lifestyle {
+		@extend %text-common;
+	}
+}
+
+#pic {
+	&-about {
+		@extend %pic-common;
+		background-color: $pic-about;
+		box-shadow: $pic-travel 10px 8px 0px, $pic-lifestyle 20px 16px 0;
+	}
+	&-travel {
+		@extend %pic-common;
+		background-color: $pic-travel;
+		box-shadow: $pic-lifestyle -10px 8px 0px, $pic-about -20px 16px 0;
+	}
+	&-lifestyle {
+		@extend %pic-common;
+		background-color: $pic-lifestyle;
+		box-shadow: $pic-about 10px 8px 0px, $pic-travel 20px 16px 0;
+	}
+}
+
+#footer {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 100%;
+	height: 3rem;
+	animation: fadeInLate 5s;
+
+	p {
+		padding-top: 1.4rem;
+		padding-bottom: 1px;
+		text-align: center;
+
+		span {
+			padding: 5px;
+			color: $outline;
+			background-color: $navbar;
+		}
+	}
+}
+
+// Mobile View
+@media only screen and (max-width: $breakpoint-tablet) {
+	#header {
+		#heading {
+			top: 5rem;
+		}
+	}
+
+	#section {
+		&-about,
+		&-travel,
+		&-lifestyle {
+			@extend %section-common;
+			flex-direction: column;
+			height: 60vh;
+		}
+
+		&-about,
+		&-lifestyle {
+			flex-direction: column-reverse;
+		}
+	}
+
+	#text {
+		&-about,
+		&-travel,
+		&-lifestyle {
+			@extend %text-common;
+			flex-basis: 40%;
+			padding: 0.5rem 1rem;
+
+			span {
+				line-height: 1.8rem;
+			}
+		}
+	}
+
+	#pic {
+		&-about,
+		&-travel,
+		&-lifestyle {
+			@extend %pic-common;
+			flex-basis: 60%;
+			box-shadow: none;
+			margin: 0;
+		}
+
+		&-travel,
+		&-lifestyle {
+			margin-top: 2rem;
+		}
+	}
+}
+
+@media only screen and (max-width: $breakpoint-phone) {
+	#navbar {
+		height: 60px;
+		ul {
+			li:nth-child(1) {
+				padding: 10px 0 0 0;
+				margin: 0 0 0 1rem;
+			}
+		}
+	}
+
+	#header {
+		height: 60vh;
+		#heading {
+			top: 4rem;
+			width: 80vw;
+		}
+	}
+
+	#navbar {
+		ul {
+			li:nth-child(2),
+			li:nth-child(3),
+			li:nth-child(4) {
+				display: none;
+			}
+		}
+	}
+
+	#footer {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: $breakpoint-smallphone) {
+	#section {
+		&-about,
+		&-travel,
+		&-lifestyle {
+			height: 100vh;
+		}
+	}
+
+	#navbar {
+		height: 60px;
+		ul {
+			li:nth-child(1) {
+				padding: 10px 0 0 0;
+				margin: 0 0 0 1rem;
+			}
+		}
+	}
+
+	#header {
+		height: 100vh;
+		#heading {
+			top: 3rem;
+			width: 80vw;
+		}
+	}
+
+	#footer {
+		display: none;
+	}
+}
